@@ -1,52 +1,54 @@
+// passo 1 - dar um jeito de pegar o elemento HTML dos botões
 
-// Passo 1 identificar o botao no html
 const botoesCarrossel = document.querySelectorAll(".botao");
-const imagens = document.querySelectorAll(".imagem");
-const informacoes = document.querySelectorAll(".informacoes"); 
 
-//passo 2 identificar o click do usuário
+
+// passo 2 - dar um jeito de identificar o clique do usuário no botão
 
 botoesCarrossel.forEach((botao, indice) => {
     botao.addEventListener("click", () => {
-//Passo 3 desmarcar o botõ selecionado anterior
 
-    desativarBotaoSelecionado();
-    //Passo 4 marcar o botão clicado como se estivesse selecionado
+        // passo 3 - desmarcar o botão selecionado anterior
+        desativarBotaoSelecionado();
+
+        // passo 4 - marcar o botão clicado como se estivesse selecionado
         marcarBotaoComoSelecionado(botao);
 
+        // passo 5 - esconder a imagem anteriormente selecionada
+        esconderImagemAtivaAnteriormente();
 
-        //Passo 5, esconder a imagem selecioanada anteriormente
-        esconderImagemAtiva();
-        // // //Passo 6, fazer aparecer a imagem do dragão selecionado
-        mostrarImagemDeFundo(indice); 
+        // passo 6 - fazer aparecer a imagem correspondente ao botão clicado
+        mostrarImagemFundo(indice);
 
+        // passo 7 - esconder a informação do dragão anteriormente selecionado
+        esconderInformacoesAtivasAnteriormente();
 
-        //passo 7, esconder as informações do Balerion
-        escondendoInformacoesAtivas();
-        // //Passo 8, mostrar a informação correta
-        mostrarInformacoes(indice);
+        // passo 8 - mostrar a informação do dragão referente ao botão clicado
+        mostrarInformacoesAtiva(indice);
+
     })
-    
 })
-
-function mostrarInformacoes(indice) {
-    informacoes[indice].classList.add("ativa");
-}
 
 function marcarBotaoComoSelecionado(botao) {
     botao.classList.add("selecionado");
 }
 
-function escondendoInformacoesAtivas() {
-    const informacoesAtiva = document.querySelector(".informacoes .ativa");
-    informacoesAtiva.classlist.remove("ativa");
+function mostrarInformacoesAtiva(indice) {
+    const informacoes = document.querySelectorAll(".informacoes");
+    informacoes[indice].classList.add("ativa");
 }
 
-function mostrarImagemDeFundo(indice) {
+function esconderInformacoesAtivasAnteriormente() {
+    const informacoesAtiva = document.querySelector(".informacoes.ativa");
+    informacoesAtiva.classList.remove("ativa");
+}
+
+function mostrarImagemFundo(indice) {
+    const imagens = document.querySelectorAll(".imagem");
     imagens[indice].classList.add("ativa");
 }
 
-function esconderImagemAtiva() {
+function esconderImagemAtivaAnteriormente() {
     const imagemAtiva = document.querySelector(".ativa");
     imagemAtiva.classList.remove("ativa");
 }
