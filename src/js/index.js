@@ -1,51 +1,57 @@
+
+// Passo 1 identificar o botao no html
 const botoesCarrossel = document.querySelectorAll(".botao");
 const imagens = document.querySelectorAll(".imagem");
-const informacoes = document.querySelectorAll(".informacoes");
+const informacoes = document.querySelectorAll(".informacoes"); 
+
+//passo 2 identificar o click do usuário
 
 botoesCarrossel.forEach((botao, indice) => {
     botao.addEventListener("click", () => {
+//Passo 3 desmarcar o botõ selecionado anterior
 
-        marcarBotaoSelecionado();
-
-        marcarBotaoSelecionado(botao);
-
-
-        esconderimagemAtiva();
-
-        mostrarImagemDeFundo(indice);
+    desativarBotaoSelecionado();
+    //Passo 4 marcar o botão clicado como se estivesse selecionado
+        marcarBotaoComoSelecionado(botao);
 
 
-        esconderInformacoesAtivas();
-        
+        //Passo 5, esconder a imagem selecioanada anteriormente
+        esconderImagemAtiva();
+        // // //Passo 6, fazer aparecer a imagem do dragão selecionado
+        mostrarImagemDeFundo(indice); 
+
+
+        //passo 7, esconder as informações do Balerion
+        escondendoInformacoesAtivas();
+        // //Passo 8, mostrar a informação correta
         mostrarInformacoes(indice);
-        
-    });
-
-});
-function marcarBotaoSelecionado(botao) {
-    botao.classList.add("selecionado");
-}
+    })
+    
+})
 
 function mostrarInformacoes(indice) {
     informacoes[indice].classList.add("ativa");
 }
 
-function esconderInformacoesAtivas() {
-    const informacoesAtiva = document.querySelector(".informacoes.ativa");
-    informacoesAtiva.classList.remove("ativa");
+function marcarBotaoComoSelecionado(botao) {
+    botao.classList.add("selecionado");
+}
+
+function escondendoInformacoesAtivas() {
+    const informacoesAtiva = document.querySelector(".informacoes .ativa");
+    informacoesAtiva.classlist.remove("ativa");
 }
 
 function mostrarImagemDeFundo(indice) {
     imagens[indice].classList.add("ativa");
 }
 
-function esconderimagemAtiva() {
+function esconderImagemAtiva() {
     const imagemAtiva = document.querySelector(".ativa");
     imagemAtiva.classList.remove("ativa");
 }
 
 function desativarBotaoSelecionado() {
     const botaoSelecionado = document.querySelector(".selecionado");
-    botaoSelecionado.classlist.remove("selecionado");
+    botaoSelecionado.classList.remove("selecionado");
 }
-
